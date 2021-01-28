@@ -1,0 +1,65 @@
+[
+  {
+    "firstname": "Bob",
+    "lastname": "Banjolew",
+    "enrolledCourses": [
+      {
+        "subject": "CS",
+        "number": 2263,
+        "title": "Advanced Object Oriented Programming"
+      },
+      {
+        "subject": "FI",
+        "number": 1101,
+        "title": "Intro to Finance"
+      },
+      {
+        "subject": "MA",
+        "number": 1175,
+        "title": "Calculus II"
+      }
+    ]
+  },
+  {
+    "firstname": "Charity",
+    "lastname": "Chin",
+    "enrolledCourses": [
+      {
+        "subject": "CS",
+        "number": 2263,
+        "title": "Advanced Object Oriented Programming"
+      },
+      {
+        "subject": "MU",
+        "number": 3317,
+        "title": "Advanced Improvised Jazz"
+      }
+    ]
+  },
+  {
+    "firstname": "Darious",
+    "lastname": "Demoli",
+    "enrolledCourses": [
+      {
+        "subject": "CS",
+        "number": 2263,
+        "title": "Advanced Object Oriented Programming"
+      },
+      {
+        "subject": "BS",
+        "number": 1101,
+        "title": "Intro to Basket Weaving"
+      },
+      {
+        "subject": "PH",
+        "number": 1150,
+        "title": "Intro to Ethics"
+      },
+      {
+        "subject": "PH",
+        "number": 3316,
+        "title": "Medical Ethics"
+      }
+    ]
+  }
+]
