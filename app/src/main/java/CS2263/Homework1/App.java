@@ -31,10 +31,15 @@ public class App extends Application {
     private Vector<Course> storage;
 
     // entry elements
-    ComboBox departmentEntry;
-    TextField courseNumber;
-    TextField courseName;
-    TextField courseCredits;
+    private ComboBox departmentEntry;
+    private TextField courseNumber;
+    private TextField courseName;
+    private TextField courseCredits;
+    private Label departmentError;
+    private Label numberError;
+    private Label nameError;
+    private Label creditError;
+
 
 
     @Override
@@ -151,16 +156,43 @@ public class App extends Application {
         saveButton.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                int index = departmentEntry.getSelectionModel().getSelectedIndex();
-                storage.add(new Course(
-                        Course.DEPARTMENTS[index],
-                        Course.DEP_CODES[index],
-                        courseNumber.getText(),
-                        courseName.getText(),
-                        courseCredits.getText()));
-                courseNumber.setText("");
-                courseName.setText("");
-                courseCredits.setText("");
+                //first clear the error codes
+                departmentError.setText("");
+                numberError.setText("");
+                nameError.setText("");
+                creditError.setText("");
+
+                if ((departmentEntry.getValue() != null ) &&
+                        (!courseNumber.getText().equals("")) &&
+                        (!courseName.getText().equals("")) &&
+                        (!courseCredits.getText().equals(""))){
+                    int index = departmentEntry.getSelectionModel().getSelectedIndex();
+                    storage.add(new Course(
+                            Course.DEPARTMENTS[index],
+                            Course.DEP_CODES[index],
+                            courseNumber.getText(),
+                            courseName.getText(),
+                            courseCredits.getText()));
+                    courseNumber.setText("");
+                    courseName.setText("");
+                    courseCredits.setText("");
+
+                }
+                else{
+                    if (departmentEntry.getValue() == null){
+                        departmentError.setText("Error: Please select a department.");
+                    }
+                    if (courseNumber.getText().equals("")) {
+                        numberError.setText("Error: Please enter the course number.");
+                    }
+                    if (courseName.getText().equals("")) {
+                        nameError.setText("Error: Please enter the course name.");
+                    }
+                    if (courseCredits.getText().equals("")) {
+                        creditError.setText("Error: Please enter the course credits.");
+                    }
+
+                }
             }
         });
 
@@ -175,10 +207,16 @@ public class App extends Application {
         departmentEntry = new ComboBox();
         departmentEntry.setLayoutX(05);
         departmentEntry.setLayoutY(225);
+        departmentEntry.getSelectionModel().select(0);
         for (String s: Course.DEPARTMENTS){
             departmentEntry.getItems().add(s);
         }
         actors.getChildren().add(departmentEntry);
+        // department entry error messege label
+        departmentError = new Label("");
+        departmentError.setLayoutX(160);
+        departmentError.setLayoutY(225);
+        actors.getChildren().add(departmentError);
 
         // Set up and add label course entry
         Label courseNumberLabel = new Label("Course Number: ");
@@ -186,10 +224,15 @@ public class App extends Application {
         courseNumberLabel.setLayoutY(250);
         actors.getChildren().add(courseNumberLabel);
         // Now for the course number text field
-        courseNumber = new TextField();
+        courseNumber = new TextField("");
         courseNumber.setLayoutX(05);
         courseNumber.setLayoutY(265);
         actors.getChildren().add(courseNumber);
+        // number entry error messege label
+        numberError = new Label("");
+        numberError.setLayoutX(160);
+        numberError.setLayoutY(265);
+        actors.getChildren().add(numberError);
 
         // Set up and add label course entry
         Label courseNameLabel = new Label("Course Name: ");
@@ -197,10 +240,15 @@ public class App extends Application {
         courseNameLabel.setLayoutY(300);
         actors.getChildren().add(courseNameLabel);
         // Name text field
-        courseName = new TextField();
+        courseName = new TextField("");
         courseName.setLayoutX(05);
         courseName.setLayoutY(315);
         actors.getChildren().add(courseName);
+        // name entry error messege label
+        nameError = new Label("");
+        nameError.setLayoutX(160);
+        nameError.setLayoutY(315);
+        actors.getChildren().add(nameError);
 
         // Set up and add label course entry
         Label courseCreditsLabel = new Label("Course Credit Quantity: ");
@@ -208,10 +256,15 @@ public class App extends Application {
         courseCreditsLabel.setLayoutY(350);
         actors.getChildren().add(courseCreditsLabel);
         // Credit text field
-        courseCredits = new TextField();
+        courseCredits = new TextField("");
         courseCredits.setLayoutX(05);
         courseCredits.setLayoutY(365);
         actors.getChildren().add(courseCredits);
+        // creditError entry error messege label
+        creditError = new Label("");
+        creditError.setLayoutX(160);
+        creditError.setLayoutY(365);
+        actors.getChildren().add(creditError);
 
         // EXIT Button
         Button exit = new Button("Exit");
